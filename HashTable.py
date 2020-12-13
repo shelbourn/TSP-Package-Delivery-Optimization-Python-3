@@ -34,7 +34,7 @@ class HashTable:
     # Function for adding a key/value pair to the hash table
     # O(N)
     def __create_entry__(self, key, val):
-        hashed_key = self.get_hash(key)
+        hashed_key = self._get_hash(key)
         found = False
 
         # Determine if key already exists & update value if it does
@@ -43,20 +43,28 @@ class HashTable:
             if len(el) == 2 and el[0] == key:
                 self.table[hashed_key][i] = (key, val)
                 found = True
+                print('A package with ID ' + key + ' already exists in the table.')
+                print('The entry for this package has been updated with the new value.')
                 break
+
         if not found:
             self.table[hashed_key].append((key, val))
+            print('The package with ID '+ key + ' has been successfully entered into the table.')
+            return
 
     # Function for retrieving entries from the table
     # O(N)
     def __read_entry__(self, key):
-        hashed_key = self.get_hash(key)
+        hashed_key = self._get_hash(key)
         found = False
 
         for el in self.table[hashed_key]:
             if el[0] == key:
                 found = True
+                entry = el
+                print('The table entry associated with package ID ' + key + ' is: ' + entry)
                 return el[1]
+
         if not found:
             print('Unable to locate a package with the ID:', key)
             print('Please double check the ID and try again.')
@@ -65,14 +73,16 @@ class HashTable:
     # Function for updating hash table entries
     # O(N)
     def __update_entry__(self, key, val):
-        hashed_key = self.get_hash(key)
+        hashed_key = self._get_hash(key)
         found = False
 
         for i, el in enumerate(self.table[hashed_key]):
             if len(el) == 2 and el[0] == key:
                 self.table[hashed_key][i] = (key, val)
                 found = True
+                print('Package with ID ' + key + ' has been successfully updated in the table.')
                 break
+
         if not found:
             print('Unable to update the package with ID:', key)
             print('No package found with ID:', key)
@@ -82,13 +92,15 @@ class HashTable:
     # Function for deleting hash table entries
     # O(N)
     def __delete_entry__(self, key):
-        hashed_key = self.get_hash(key)
+        hashed_key = self._get_hash(key)
         found = False
 
         for i, el in enumerate(self.table[hashed_key]):
             if len(el) == 2 and el[0] == key:
                 found = True
                 removed_item = self.table[hashed_key].pop(i)
+                print('Package ' + removed_item + ' has been successfully removed from the table.')
+                break
 
         if not found:
             print('Unable to delete the package with ID:', key)
