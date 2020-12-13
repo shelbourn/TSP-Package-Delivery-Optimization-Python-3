@@ -49,7 +49,7 @@ class HashTable:
 
         if not found:
             self.table[hashed_key].append((key, val))
-            print('The package with ID '+ key + ' has been successfully entered into the table.')
+            print('The package with ID ' + key + ' has been successfully entered into the table.')
             return
 
     # Function for retrieving entries from the table
