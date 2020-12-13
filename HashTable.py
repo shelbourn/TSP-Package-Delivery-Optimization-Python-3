@@ -12,6 +12,7 @@ class HashEntry:
 # The HashTable class includes the following:
     # Methods for: defining the empty table, defining the hash key, adding an item to the table, retrieving an item from the table,
     # updating an item in the table, and deleting an item from the table
+    # The hash table add_item function uses chaining for collision handling
 
 class HashTable:
 
