@@ -8,11 +8,12 @@ class HashEntry:
         self.key = key
         self.value = value
 
+
 # Class constructor for the Hash Table to be used for all packages
 # The HashTable class includes the following:
-    # Methods for: defining the empty table, defining the hash key, adding an item to the table, retrieving an item from the table,
-    # updating an item in the table, and deleting an item from the table
-    # The hash table add_item function uses chaining for collision handling
+# Methods for: defining the empty table, defining the hash key, adding an item to the table,
+# retrieving an item from the table, updating an item in the table, and deleting an item from the table
+# The hash table add_item function uses chaining for collision handling
 
 class HashTable:
 
@@ -23,9 +24,9 @@ class HashTable:
         self.MAX = 10
         self.table = [[] for i in range(self.MAX)]
 
-    # Defines the hashing function
+    # Defines the hashing function (private function that is only used by other functions within class)
     # O(1)
-    def get_hash(self, key):
+    def _get_hash(self, key):
         return int(key) % len(self.table)
 
     # <----- BEGIN CRUD FUNCTIONALITY ----->
@@ -57,8 +58,8 @@ class HashTable:
                 found = True
                 return el[1]
         if not found:
-            print("Unable to locate a package with the ID:", key)
-            print("Please double check the ID and try again.")
+            print('Unable to locate a package with the ID:', key)
+            print('Please double check the ID and try again.')
             return None
 
     # Function for updating hash table entries
@@ -73,15 +74,26 @@ class HashTable:
                 found = True
                 break
         if not found:
-            print("Unable to update the package with ID:", key)
-            print("No package found with ID:", key)
-            print("Please double check the ID and try again.")
+            print('Unable to update the package with ID:', key)
+            print('No package found with ID:', key)
+            print('Please double check the ID and try again.')
             return None
 
+    # Function for deleting hash table entries
+    # O(N)
     def __delete_entry__(self, key):
         hashed_key = self.get_hash(key)
         found = False
 
+        for i, el in enumerate(self.table[hashed_key]):
+            if len(el) == 2 and el[0] == key:
+                found = True
+                removed_item = self.table[hashed_key].pop(i)
 
+        if not found:
+            print('Unable to delete the package with ID:', key)
+            print('No package found with ID:', key)
+            print('Please double check the ID and try again.')
+            return None
 
     # <----- END CRUD FUNCTIONALITY ----->
