@@ -1,4 +1,4 @@
-# HashTable.py contains the Class constructors and associated methods for the HashEntry and HashTable classes
+# hash_table.py contains the Class constructors and associated methods for the HashEntry and HashTable classes
 # Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 # Class constructor for an individual Hash Table entry
