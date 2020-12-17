@@ -2,8 +2,8 @@
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-from package_table import get_package_table
+from truckloads import get_truck_1, get_truck_2, get_truck_3
 
-map_test = get_package_table()
-map_test.read_entry(41)
-map_test.delete_entry(50)
+get_truck_1()
+get_truck_2()
+get_truck_3()

@@ -33,7 +33,7 @@ class HashTable:
 
     # Function for adding a key/value pair to the hash table
     # O(N)
-    def create_entry(self, key, val):
+    def create(self, key, val):
         hashed_key = self._get_hash(key)
         found = False
 
@@ -54,7 +54,7 @@ class HashTable:
 
     # Function for retrieving entries from the table
     # O(N)
-    def read_entry(self, key):
+    def read(self, key):
         hashed_key = self._get_hash(key)
         found = False
 
@@ -72,7 +72,7 @@ class HashTable:
 
     # Function for updating hash table entries
     # O(N)
-    def update_entry(self, key, val):
+    def update(self, key, val):
         hashed_key = self._get_hash(key)
         found = False
 
@@ -91,13 +91,14 @@ class HashTable:
 
     # Function for deleting hash table entries
     # O(N)
-    def delete_entry(self, key):
+    def delete(self, key):
         hashed_key = self._get_hash(key)
         found = False
 
         for i, el in enumerate(self.table[hashed_key]):
             if len(el) == 2 and el[0] == key:
                 found = True
+                del self.table[hashed_key][i]
                 print('The package with ID ' + str(key) + ' has been successfully removed from the table.')
                 break
 

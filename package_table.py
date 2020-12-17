@@ -23,19 +23,19 @@ with open('./data/wguups-package-data.csv') as csvfile:
         deadline = row[5]
         weight = row[6]
         notes = row[7]
-        delivery_start = ''
-        current_location = ''
+        left_hub = ''
+        current_location = "Western Governor's University"
         delivery_time = ''
-        status = ''
+        status = 'At the Hub'
 
         package_key = int(package_id)
-        package_value = [package_id, street, city, state, zip, deadline, weight, notes, delivery_start,
+        package_value = [package_id, street, city, state, zip, deadline, weight, notes, left_hub,
                          current_location, delivery_time, status]
 
         # Adds each key/value pair to the package hash table
         # O(N) -- Since some rows in the table may contain nested lists that need to be iterated through, the space-time
         # complexity for this operation is O(N), otherwise it would be O(1)
-        package_table.create_entry(package_key, package_value)
+        package_table.create(package_key, package_value)
 
 
     # Function for retrieving the full package hash table
