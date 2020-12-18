@@ -1,4 +1,4 @@
-# ingests data from "WGUPS Distance Table.csv", assigns them to objects for use in program
+# distance.py ingests data from "WGUPS Distance Table.csv", assigns them to objects for use in program
 # Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 import csv
@@ -22,3 +22,12 @@ def get_distances():
 # Getter for addresses
 def get_addresses():
     return distance_addresses
+
+
+# Getter for distance_calc
+# Retrieves distance between 2 addresses based on their indeces in the distance matrix
+def distance_calc(add_1, add_2):
+    try:
+        return distances[add_1[12]][add_2[12]]
+    except IndexError:
+        return distances[add_2[12]][add_1[12]]
