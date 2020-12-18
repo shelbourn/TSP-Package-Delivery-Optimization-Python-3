@@ -3,7 +3,17 @@
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 from truckloads import get_truck_1, get_truck_2, get_truck_3
+from package_table import get_package_table
 
-get_truck_1()
-get_truck_2()
-get_truck_3()
+packages = get_package_table()
+for el in range(1, 41):
+    pkg = packages.read(el)
+    print(pkg)
+
+truck_1 = get_truck_1()
+truck_2 = get_truck_2()
+truck_3 = get_truck_3()
+
+print(len(truck_1))
+print(len(truck_2))
+print(len(truck_3))

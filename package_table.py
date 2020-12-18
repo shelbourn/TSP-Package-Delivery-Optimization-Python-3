@@ -4,12 +4,14 @@
 
 import csv
 from hash_table import HashTable
+from distances import get_addresses
 
 # Ingest package data from 'WGUPS Package File.csv'
-with open('./data/wguups-package-data.csv') as csvfile:
+with open('./data/wgups-package-data.csv') as csvfile:
     package_csv = csv.reader(csvfile, delimiter=',')
 
     package_table = HashTable()  # Creates an instance of the hash table for packages to be entered into
+    addresses = get_addresses()  # Assigning addresses to local variable
 
     # Ingest package data from csv file and insert them into hash table as key/value pairs
     # Key == package ID / Value == array containing package details
@@ -37,7 +39,20 @@ with open('./data/wguups-package-data.csv') as csvfile:
         # complexity for this operation is O(N), otherwise it would be O(1)
         package_table.create(package_key, package_value)
 
+    # Iterates over packages and assigns a package address index based on the
+    # distance_addresses variable in distances.py
+    # This index will help to simplify distance calculations necessary in the program
+    # O(N^2)
+    for el in range(1, 41):
+        pkg = package_table.read(el)
+        address_index = ''
+        address = pkg[1]
+        for key, value in addresses.items():
+            if address in value['address']:
+                address_index = key
+                pkg.append(address_index)
+        package_table.update(el, pkg)
 
-    # Function for retrieving the full package hash table
+    # Getter for package_table
     def get_package_table():
         return package_table
