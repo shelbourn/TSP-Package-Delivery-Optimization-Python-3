@@ -25,7 +25,7 @@ def get_addresses():
 
 
 # Getter for distance_calc
-# Retrieves distance between 2 addresses based on their indeces in the distance matrix
+# Retrieves distance between 2 addresses based on their indices in the distance matrix
 def distance_calc(add_1, add_2):
     try:
         return distances[add_1[13]][add_2[13]]

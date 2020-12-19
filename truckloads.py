@@ -120,3 +120,5 @@ def get_truck_3():
     truck_3.sort(key=package_sort)
     print(truck_3)
     return truck_3
+
+

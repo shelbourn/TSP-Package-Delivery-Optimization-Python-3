@@ -1,10 +1,21 @@
 # durations.py includes various operations for calculating duration and manipulating datetime objects
 # Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
-truck_speed = 18
 
+# Calculates transit time in minutes based on the distance parameter
 def dest_transit_time(distance):
-    transit_hours = distance / truck_speed
+    truck_speed = 18
+    transit_hours = int(distance) / truck_speed
     transit_minutes = int(round(transit_hours * 60))
+    print(transit_minutes)
+    return transit_minutes
+
+
+# Calculates the delivery time of a package based on the current_time and
+# transit_minutes parameters
+def calc_delivery_time(current_time, transit_minutes):
+    delivery_time = current_time + timedelta(minutes=transit_minutes)
+    print(delivery_time)
+    return delivery_time
