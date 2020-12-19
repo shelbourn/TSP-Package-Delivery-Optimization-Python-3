@@ -30,17 +30,20 @@ for el in range(1, 41):
         truck_2.append(pkg)
         truck_2_zips.append(pkg[4])
         truck_2_count += 1
-        packages.delete(el)
+        pkg[12] = True
+        packages.update(el, pkg)
     elif 'Wrong' in pkg[7]:  # correcting address for package #9 & assigning it to truck_3
         pkg[1] = '410 S State St.'
         pkg[4] = '84111'
         truck_3.append(pkg)
-        packages.delete(el)
+        pkg[12] = True
+        packages.update(el, pkg)
     elif 'Must' in pkg[7] or pkg[5] != 'EOD':  # assigning packages to truck_1
         truck_1.append(pkg)
         truck_1_zips.append(pkg[4])
         truck_1_count += 1
-        packages.delete(el)
+        pkg[12] = True
+        packages.update(el, pkg)
 
 # Second pass:
 # assigns packages to truck_1 that must be delivered together
@@ -52,7 +55,8 @@ for el in range(1, 41):
         print('Found!')
         truck_1_zips.append(pkg[4])
         truck_1_count += 1
-        packages.delete(el)
+        pkg[12] = True
+        packages.update(el, pkg)
 
 # Third pass:
 # assigns packages to truck_1 while it has remaining space (based on zip code)
@@ -61,25 +65,31 @@ for el in range(1, 41):
 # O(N)
 for el in range(1, 41):
     pkg = packages.read(el)
-    if pkg is not None and truck_1_count < truck_capacity and pkg[4] in truck_1_zips:
-        truck_1.append(pkg)
-        truck_1_count += 1
-        packages.delete(el)
-    elif pkg is not None and truck_1_count < 16:
-        truck_1.append(pkg)
-        truck_1_count += 1
-        packages.delete(el)
-    elif pkg is not None and truck_1_count == truck_capacity and truck_2_count < truck_capacity and pkg[4] in truck_2_zips:
-        truck_2.append(pkg)
-        truck_2_count += 1
-        packages.delete(el)
-    elif pkg is not None and truck_1_count == truck_capacity and truck_2_count < truck_capacity:
-        truck_2.append(pkg)
-        truck_2_count += 1
-        packages.delete(el)
-    elif pkg is not None and truck_1_count == truck_capacity and truck_2_count == truck_capacity:
-        truck_3.append(pkg)
-        packages.delete(el)
+    if pkg[12] == False:
+        if pkg is not None and truck_1_count < truck_capacity and pkg[4] in truck_1_zips:
+            truck_1.append(pkg)
+            truck_1_count += 1
+            pkg[12] = True
+            packages.update(el, pkg)
+        elif pkg is not None and truck_1_count < 16:
+            truck_1.append(pkg)
+            truck_1_count += 1
+            pkg[12] = True
+            packages.update(el, pkg)
+        elif pkg is not None and truck_1_count == truck_capacity and truck_2_count < truck_capacity and pkg[4] in truck_2_zips:
+            truck_2.append(pkg)
+            truck_2_count += 1
+            pkg[12] = True
+            packages.update(el, pkg)
+        elif pkg is not None and truck_1_count == truck_capacity and truck_2_count < truck_capacity:
+            truck_2.append(pkg)
+            truck_2_count += 1
+            pkg[12] = True
+            packages.update(el, pkg)
+        elif pkg is not None and truck_1_count == truck_capacity and truck_2_count == truck_capacity:
+            truck_3.append(pkg)
+            pkg[12] = True
+            packages.update(el, pkg)
 
 
 # Helper method to prioritize trucks based on package zip codes

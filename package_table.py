@@ -29,10 +29,11 @@ with open('./data/wgups-package-data.csv') as csvfile:
         current_location = "Western Governor's University"
         delivery_time = ''
         status = 'At the Hub'
+        assigned = False
 
         package_key = int(package_id)
         package_value = [package_id, street, city, state, zip, deadline, weight, notes, left_hub,
-                         current_location, delivery_time, status]
+                         current_location, delivery_time, status, assigned]
 
         # Adds each key/value pair to the package hash table
         # O(N) -- Since some rows in the table may contain nested lists that need to be iterated through, the space-time

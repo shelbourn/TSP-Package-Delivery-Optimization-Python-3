@@ -28,6 +28,6 @@ def get_addresses():
 # Retrieves distance between 2 addresses based on their indeces in the distance matrix
 def distance_calc(add_1, add_2):
     try:
-        return distances[add_1[12]][add_2[12]]
+        return distances[add_1[13]][add_2[13]]
     except IndexError:
-        return distances[add_2[12]][add_1[12]]
+        return distances[add_2[13]][add_1[13]]
