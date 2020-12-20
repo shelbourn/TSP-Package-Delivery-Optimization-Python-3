@@ -2,13 +2,15 @@
 # The logic in this file will actually execute the truck delivery routes and deliver packages
 # Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
-from datetime import datetime
+from datetime import datetime, timedelta
+import time
 from durations import calc_dest_transit_time, calc_delivery_time
 from truckloads import get_truck_1, get_truck_2, get_truck_3
 from distances import calc_distance, get_dest_name
 from package_table import get_package_table
 
 packages = get_package_table()
+
 
 # Executing delivery route for Truck 1
 def exec_truck_routes():
@@ -28,6 +30,12 @@ def exec_truck_routes():
     dest_distance = 0  # Distance between each destination on route
     dest_transit_time = 0  # Transit time between each destination on route
     delivery_time = ''  # Time package was delivered
+    total_mileage_truck_1 = 0
+    total_mileage_truck_2 = 0
+    total_mileage_truck_3 = 0
+    total_transit_time_truck_1 = 0
+    total_transit_time_truck_2 = 0
+    total_transit_time_truck_3 = 0
     total_mileage = 0
     total_transit_time = 0
 
@@ -63,7 +71,9 @@ def exec_truck_routes():
     dest_transit_time = calc_dest_transit_time(dest_distance)
     current_location_name_truck_1 = get_dest_name(final_destination)
     total_transit_time += int(dest_transit_time)
+    total_transit_time_truck_1 += int(dest_transit_time)
     total_mileage += float(dest_distance)
+    total_mileage_truck_1 += float(dest_distance)
 
     # Prints total transit time and total mileage
     print('Total Transit Time: ' + str(total_transit_time))
@@ -93,7 +103,9 @@ def exec_truck_routes():
         pkg[11] = 'Delivered'
         packages.update(int(pkg[0]), pkg)
         total_transit_time += int(dest_transit_time)
+        total_transit_time_truck_2 += int(dest_transit_time)
         total_mileage += float(dest_distance)
+        total_mileage_truck_2 += float(dest_distance)
         print(pkg)
 
     # DON'T KNOW IF I NEED TO RETURN TRUCK 2 TO THE HUB
@@ -132,7 +144,9 @@ def exec_truck_routes():
         pkg[11] = 'Delivered'
         packages.update(int(pkg[0]), pkg)
         total_transit_time += int(dest_transit_time)
+        total_transit_time_truck_3 += int(dest_transit_time)
         total_mileage += float(dest_distance)
+        total_mileage_truck_3 += float(dest_distance)
         print(pkg)
 
     # DON'T KNOW IF I NEED TO RETURN TRUCK 3 TO THE HUB
@@ -148,10 +162,62 @@ def exec_truck_routes():
     print('Total Mileage: ' + str(total_mileage))
 
     # Returns total_transit_time and total_mileage
-    return total_transit_time, total_mileage
+    return total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, \
+           total_transit_time_truck_3, total_mileage, total_mileage_truck_1, total_mileage_truck_2, \
+           total_mileage_truck_3
 
-# IDEA FOR CALCULATING CURRENT STATUS BASED ON GIVEN TIME
-# Have an extra param for route function with a type of datetime
-# If the datetime param exists then execute the route function until that time is met
-# compare the datetime param to delivery times, if the time param is met and the truck is in between
-# locations then return the status based on teh previous location
+
+# Getter for total_transit_time
+def get_total_transit_time():
+    time_sec = exec_truck_routes()[0] * 60
+    time_convert = time.gmtime(time_sec)
+    hours = time.strftime('%H', time_convert)
+    minutes = time.strftime('%M', time_convert)
+    return hours, minutes
+
+
+# Getter for total_transit_time_truck_1
+def get_total_transit_time_truck_1():
+    time_sec = exec_truck_routes()[1] * 60
+    time_convert = time.gmtime(time_sec)
+    hours = time.strftime('%H', time_convert)
+    minutes = time.strftime('%M', time_convert)
+    return hours, minutes
+
+
+# Getter for total_transit_time_truck_2
+def get_total_transit_time_truck_2():
+    time_sec = exec_truck_routes()[2] * 60
+    time_convert = time.gmtime(time_sec)
+    hours = time.strftime('%H', time_convert)
+    minutes = time.strftime('%M', time_convert)
+    return hours, minutes
+
+
+# Getter for total_transit_time_truck_3
+def get_total_transit_time_truck_3():
+    time_sec = exec_truck_routes()[3] * 60
+    time_convert = time.gmtime(time_sec)
+    hours = time.strftime('%H', time_convert)
+    minutes = time.strftime('%M', time_convert)
+    return hours, minutes
+
+
+# Getter for total_mileage
+def get_total_mileage():
+    return exec_truck_routes()[4]
+
+
+# Getter for total_mileage_truck_1
+def get_total_mileage_truck_1():
+    return exec_truck_routes()[5]
+
+
+# Getter for total_mileage_truck_2
+def get_total_mileage_truck_2():
+    return exec_truck_routes()[6]
+
+
+# Getter for total_mileage_truck_3
+def get_total_mileage_truck_3():
+    return exec_truck_routes()[7]
