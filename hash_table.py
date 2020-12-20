@@ -62,7 +62,7 @@ class HashTable:
             if el[0] == key:
                 found = True
                 entry = el
-                print('The table entry associated with package ID ' + str(key) + ' is: ' + str(entry))
+                # print('The table entry associated with package ID ' + str(key) + ' is: ' + str(entry))
                 return el[1]
 
         if not found:

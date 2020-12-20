@@ -16,3 +16,7 @@ for el in range(1, 41):
 
 truck_1 = get_truck_1()
 exec_truck_routes()
+
+for el in range(1, 41):
+    pkg = packages.read(el)
+    print(pkg)
