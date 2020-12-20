@@ -8,7 +8,7 @@ from datetime import timedelta
 def calc_dest_transit_time(distance):
     truck_speed = 18
     transit_hours = float(distance) / truck_speed
-    transit_minutes = int(round(transit_hours * 60))
+    transit_minutes = float(transit_hours * 60)
     print(transit_minutes)
     return transit_minutes
 
