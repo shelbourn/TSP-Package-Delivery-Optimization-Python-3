@@ -27,7 +27,9 @@ def get_addresses():
 # Getter for distance_calc
 # Retrieves distance between 2 addresses based on their indices in the distance matrix
 def calc_distance(add_1, add_2):
-    if add_1 == 0:
+    if add_1 == 0 and add_2 == 0:
+        return 0
+    elif add_1 == 0:
         try:
             return distances[add_1][add_2[13]]
         except IndexError:

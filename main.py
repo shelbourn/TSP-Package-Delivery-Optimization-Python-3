@@ -22,4 +22,4 @@ for el in range(1, 41):
     pkg = packages.read(el)
     print(pkg)
 
-get_package_statuses('10:15')
+get_package_statuses('10:20')

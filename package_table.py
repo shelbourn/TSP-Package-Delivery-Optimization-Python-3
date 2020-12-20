@@ -28,7 +28,7 @@ def get_package_table():
             weight = row[6]
             notes = row[7]
             left_hub = ''
-            current_location = "Western Governor's University"
+            current_location = "Western Governors University"
             delivery_time = ''
             status = 'At the Hub'
             assigned = False
