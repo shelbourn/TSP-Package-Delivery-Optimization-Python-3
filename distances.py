@@ -26,8 +26,28 @@ def get_addresses():
 
 # Getter for distance_calc
 # Retrieves distance between 2 addresses based on their indices in the distance matrix
-def distance_calc(add_1, add_2):
-    try:
-        return distances[add_1[13]][add_2[13]]
-    except IndexError:
-        return distances[add_2[13]][add_1[13]]
+def calc_distance(add_1, add_2):
+    if add_1 == 0:
+        try:
+            return distances[add_1][add_2[13]]
+        except IndexError:
+            return distances[add_2[13]][add_1]
+    elif add_2 ==0:
+        try:
+            return distances[add_1[13]][add_2]
+        except IndexError:
+            return distances[add_2][add_1[13]]
+    else:
+        try:
+            return distances[add_1[13]][add_2[13]]
+        except IndexError:
+            return distances[add_2[13]][add_1[13]]
+
+
+# Getter for get_dest_name
+# Retrieves the name of a destination based on a given package
+def get_dest_name(package):
+    if package == 0:
+        return distance_addresses[0]['name']
+    else:
+        return distance_addresses[package[13]]['name']
