@@ -27,14 +27,14 @@ def get_package_statuses(time_param):
     dest_distance = 0  # Distance between each destination on route
     dest_transit_time = 0  # Transit time between each destination on route
     delivery_time = ''  # Time package was delivered
-    time_param.split(':')
-    hr = time_param[0]
-    min = time_param[1]
-    converted_time_param = datetime(year=2020, month=12, day=25, hour=hr, minute=min)
+    time_param = datetime.strptime(time_param, '%H:%M')
+    converted_time_param = datetime(year=2020, month=12, day=25, hour=time_param.hour, minute=time_param.minute)
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_1:
+        pkg[8] = str(current_time_truck_1)
+        pkg[10] = 'N/A'
         pkg[11] = 'Out for Delivery'
         packages.update(int(pkg[0]), pkg)
 
@@ -64,6 +64,8 @@ def get_package_statuses(time_param):
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_2:
+        pkg[8] = str(current_time_truck_2)
+        pkg[10] = 'N/A'
         pkg[11] = 'Out for Delivery'
         packages.update(int(pkg[0]), pkg)
 
@@ -96,6 +98,8 @@ def get_package_statuses(time_param):
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_3:
+        pkg[8] = str(current_time_truck_3)
+        pkg[10] = 'N/A'
         pkg[11] = 'Out for Delivery'
         packages.update(int(pkg[0]), pkg)
 
@@ -127,6 +131,7 @@ def get_package_statuses(time_param):
 
     for el in range(1, 41):
         pkg = packages.read(el)
+        print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' [ -- ] Left Hub At: ' + pkg[8] + ' [ -- ] Current Location: ' + pkg[9] + ' [ -- ] Delivery Time: ' + pkg[10])
 
 
     # Returns total_transit_time and total_mileage

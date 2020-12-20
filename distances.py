@@ -32,7 +32,7 @@ def calc_distance(add_1, add_2):
             return distances[add_1][add_2[13]]
         except IndexError:
             return distances[add_2[13]][add_1]
-    elif add_2 ==0:
+    elif add_2 == 0:
         try:
             return distances[add_1[13]][add_2]
         except IndexError:

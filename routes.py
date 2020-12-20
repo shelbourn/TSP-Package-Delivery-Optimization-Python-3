@@ -34,6 +34,8 @@ def exec_truck_routes():
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_1:
+        pkg[8] = str(current_time_truck_1)
+        pkg[10] = 'N/A'
         pkg[11] = 'Out for Delivery'
         packages.update(int(pkg[0]), pkg)
 
@@ -69,6 +71,8 @@ def exec_truck_routes():
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_2:
+        pkg[8] = str(current_time_truck_2)
+        pkg[10] = 'N/A'
         pkg[11] = 'Out for Delivery'
         packages.update(int(pkg[0]), pkg)
 
@@ -105,6 +109,8 @@ def exec_truck_routes():
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_3:
+        pkg[8] = str(current_time_truck_3)
+        pkg[10] = 'N/A'
         pkg[11] = 'Out for Delivery'
         packages.update(int(pkg[0]), pkg)
 
