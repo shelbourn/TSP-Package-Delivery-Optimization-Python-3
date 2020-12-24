@@ -218,19 +218,19 @@ def get_total_transit_time_truck_3():
 
 # Getter for total_mileage
 def get_total_mileage():
-    return exec_truck_routes()[4]
+    return str(round(exec_truck_routes()[4], 2))
 
 
 # Getter for total_mileage_truck_1
 def get_total_mileage_truck_1():
-    return exec_truck_routes()[5]
+    return str(round(exec_truck_routes()[5], 2))
 
 
 # Getter for total_mileage_truck_2
 def get_total_mileage_truck_2():
-    return exec_truck_routes()[6]
+    return str(round(exec_truck_routes()[6], 2))
 
 
 # Getter for total_mileage_truck_3
 def get_total_mileage_truck_3():
-    return exec_truck_routes()[7]
+    return str(round(exec_truck_routes()[7], 2))
