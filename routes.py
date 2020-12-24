@@ -38,6 +38,9 @@ def exec_truck_routes():
     total_transit_time_truck_3 = 0
     total_mileage = 0
     total_transit_time = 0
+    truck_1_hub_arrival_time = ''  # Needed for dispatching truck 3. Driver must return to hub before truck 3 can depart
+
+    print('Truck 1 left hub at: ' + str(current_time_truck_1))
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -74,10 +77,14 @@ def exec_truck_routes():
     total_transit_time_truck_1 += int(dest_transit_time)
     total_mileage += float(dest_distance)
     total_mileage_truck_1 += float(dest_distance)
+    truck_1_hub_arrival_time = calc_delivery_time(current_time_truck_1, dest_transit_time)
+    print('Truck 1 returned to hub at: ' + str(truck_1_hub_arrival_time))
 
     # Prints total transit time and total mileage
     print('Total Transit Time: ' + str(total_transit_time))
     print('Total Mileage: ' + str(total_mileage))
+
+    print('Truck 2 left hub at: ' + str(current_time_truck_2))
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -120,6 +127,11 @@ def exec_truck_routes():
     print('Total Transit Time: ' + str(total_transit_time))
     print('Total Mileage: ' + str(total_mileage))
 
+    # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
+    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time else truck_1_hub_arrival_time
+
+    print('Truck 3 left hub at: ' + str(current_time_truck_3))
+
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
     for pkg in truck_3:
@@ -131,6 +143,7 @@ def exec_truck_routes():
 
     # Delivers the packages, updates package status and delivery time
     # O(N)
+
     for pkg in truck_3:
         print(pkg)
         dest_distance = calc_distance(current_location_truck_3, pkg)

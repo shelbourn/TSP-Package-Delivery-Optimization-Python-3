@@ -29,6 +29,7 @@ def get_package_statuses(time_param):
     delivery_time = ''  # Time package was delivered
     time_param = datetime.strptime(time_param, '%H:%M')
     converted_time_param = datetime(year=2020, month=12, day=25, hour=time_param.hour, minute=time_param.minute)
+    truck_1_hub_arrival_time = ''  # Needed for dispatching truck 3. Driver must return to hub before truck 3 can depart
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -67,6 +68,7 @@ def get_package_statuses(time_param):
     dest_distance = calc_distance(current_location_truck_1, final_destination)
     dest_transit_time = calc_dest_transit_time(dest_distance)
     current_location_name_truck_1 = get_dest_name(final_destination)
+    truck_1_hub_arrival_time = calc_delivery_time(current_time_truck_1, dest_transit_time)
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -108,6 +110,9 @@ def get_package_statuses(time_param):
     # current_location_name_truck_2 = get_dest_name(final_destination)
     # total_transit_time += int(dest_transit_time)
     # total_mileage += float(dest_distance)
+
+    # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
+    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -159,4 +164,4 @@ def get_package_statuses(time_param):
 
 
 # Returns the status of a package based on the package_id and time parameters
-def get_package_status(package_id, time):
+# def get_package_status(package_id, time):
