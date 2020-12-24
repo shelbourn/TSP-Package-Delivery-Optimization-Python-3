@@ -12,6 +12,6 @@ from package_table import get_package_table
 from distances import calc_distance, get_dest_name
 from durations import calc_dest_transit_time, calc_delivery_time
 from routes import exec_truck_routes, get_total_mileage_truck_1, get_total_transit_time_truck_2
-from package_statuses import get_package_statuses
+from package_statuses import get_package_statuses, get_package_status
 
-get_package_statuses('14:00')
+get_package_status(2, '11:00')
