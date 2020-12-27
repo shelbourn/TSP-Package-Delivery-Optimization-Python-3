@@ -66,7 +66,9 @@ def exec_truck_routes():
         pkg[11] = 'Delivered'
         packages.update(int(pkg[0]), pkg)
         total_transit_time += int(dest_transit_time)
+        total_transit_time_truck_1 += int(dest_transit_time)
         total_mileage += float(dest_distance)
+        total_mileage_truck_1 += float(dest_distance)
         print(pkg)
 
     # Returns truck 1 to the hub
@@ -128,7 +130,7 @@ def exec_truck_routes():
     print('Total Mileage: ' + str(total_mileage))
 
     # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
-    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time else truck_1_hub_arrival_time
+    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 >= truck_1_hub_arrival_time else truck_1_hub_arrival_time
 
     print('Truck 3 left hub at: ' + str(current_time_truck_3))
 
@@ -175,9 +177,8 @@ def exec_truck_routes():
     print('Total Mileage: ' + str(total_mileage))
 
     # Returns total_transit_time and total_mileage
-    return total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, \
-           total_transit_time_truck_3, total_mileage, total_mileage_truck_1, total_mileage_truck_2, \
-           total_mileage_truck_3
+    return [total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, total_transit_time_truck_3,
+            total_mileage, total_mileage_truck_1, total_mileage_truck_2, total_mileage_truck_3]
 
 
 # Getter for total_transit_time

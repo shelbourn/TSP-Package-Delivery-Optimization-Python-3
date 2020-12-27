@@ -11,7 +11,7 @@ from truckloads import get_truck_1, get_truck_2, get_truck_3
 from package_table import get_package_table
 from distances import calc_distance, get_dest_name
 from durations import calc_dest_transit_time, calc_delivery_time
-from routes import exec_truck_routes, get_total_mileage_truck_1, get_total_transit_time_truck_2, get_total_transit_time, get_total_mileage
+from routes import exec_truck_routes, get_total_mileage_truck_1, get_total_mileage_truck_2, get_total_mileage_truck_3, get_total_transit_time_truck_2, get_total_transit_time_truck_1, get_total_transit_time_truck_3, get_total_transit_time, get_total_mileage
 from package_statuses import get_package_statuses, get_package_status
 
 # ADD FUNCTIONALITY TO 'RETURN' TO MAIN MENU
@@ -76,14 +76,38 @@ Please make a selection below by typing in the menu option on your keyboard.
             if user_selection == 9:
                 print(main_menu)
                 user_selection = int(input('Select a menu option:'))
-            if user_selection == 1:
+            elif user_selection == 1:
                 print('\nThe total transit time for all trucks was ' + get_total_transit_time()[0] + ' Hours and ' + get_total_transit_time()[1] + ' Minutes\n')
-                user_selection = int(input('Please make another selection or type 0 to exit the program. To view the '
+                user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
                                            'main menu type 9.'))
-            if user_selection == 2:
+            elif user_selection == 2:
                 print('\nThe total mileage for all trucks was ' + get_total_mileage() + ' miles.\n')
-                user_selection = int(input('Please make another selection or type 0 to exit the program. To view the '
+                user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
                                            'main menu type 9.'))
+            elif user_selection == 3:
+                truck_selection = int(input('\nTo see the total transit time for a specific truck please type 1 for Truck '
+                                            '1, 2 for Truck 2, or 3 for Truck 3.\nType 9 to return to the main menu.'))
+                if truck_selection == 1:
+                    print('\nThe total transit time for truck ' + str(truck_selection) + ' was ' + get_total_transit_time_truck_1()[0] + ' hours and ' + get_total_transit_time_truck_1()[1] + ' minutes.')
+                elif truck_selection == 2:
+                    print('\nThe total transit time for truck ' + str(truck_selection) + ' was ' + get_total_transit_time_truck_2()[0] + ' hours and ' + get_total_transit_time_truck_2()[1] + ' minutes.')
+                elif truck_selection == 3:
+                    print('\nThe total transit time for truck ' + str(truck_selection) + ' was ' + get_total_transit_time_truck_3()[0] + ' hours and ' + get_total_transit_time_truck_3()[1] + ' minutes.')
+                elif truck_selection == 9:
+                    print(main_menu)
+                    user_selection = int(input('Please make another selection or type 0 to exit the program.'))
+            elif user_selection == 4:
+                truck_selection = int(input('\nTo see the total mileage for a specific truck please type 1 for Truck '
+                                            '1, 2 for Truck 2, or 3 for Truck 3.\nType 9 to return to the main menu.'))
+                if truck_selection == 1:
+                    print('\nThe total mileage driven for truck ' + str(truck_selection) + ' was ' + get_total_mileage_truck_1() + ' miles.')
+                elif truck_selection == 2:
+                    print('\nThe total mileage driven for truck ' + str(truck_selection) + ' was ' + get_total_mileage_truck_2() + ' miles.')
+                elif truck_selection == 3:
+                    print('\nThe total mileage driven for truck ' + str(truck_selection) + ' was ' + get_total_mileage_truck_3() + ' miles.')
+                elif truck_selection == 9:
+                    print(main_menu)
+                    user_selection = int(input('Please make another selection or type 0 to exit the program.'))
 
     # Display message on program termination
     finally:
