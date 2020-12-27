@@ -2,6 +2,7 @@
 # Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 from package_table import get_package_table
+from distances import calc_distance
 
 # 3 truck loads will be required since there are 40 packages, 2 trucks, and each
 # truck has a maximum capacity of 16 packages
@@ -103,9 +104,25 @@ def package_sort(pkg):
 
 # Getter for truck_1
 def get_truck_1():
+    truck_1_optimized = []
+    previous_package = ''
+    shortest_distance = 15
+    for pkg in truck_1:
+        if '9' in pkg[5]:
+            truck_1_optimized.append(pkg)
+            truck_1.remove(pkg)
+            previous_package = truck_1[0]
+            truck_1_optimized.append(truck_1[0])
+            truck_1.remove(truck_1[0])
+
+    # while len(truck_1) != 0:
+    #     for pkg in truck_1:
+    #         if float(calc_distance(previous_package, pkg)) < shortest_distance:
+    #             truck_1_optimized.append(pkg)
+
     truck_1.sort(key=package_sort)
-    print(truck_1)
-    return truck_1
+    print(truck_1_optimized)
+    return truck_1_optimized
 
 
 # Getter for truck_2
