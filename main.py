@@ -3,9 +3,6 @@
 
 # !!! REMOVE UNNECESSARY PRINT STATEMENTS THROUGHOUT PROGRAM !!!
 
-# !!! For dispatching truck 3 once truck 1 returns to the hub...
-# Set the initial current time of truck 3 to the arrival time of truck 1 back to the hub
-
 from datetime import datetime
 from truckloads import get_truck_1, get_truck_2, get_truck_3
 from package_table import get_package_table
@@ -13,16 +10,6 @@ from distances import calc_distance, get_dest_name
 from durations import calc_dest_transit_time, calc_delivery_time
 from routes import exec_truck_routes, get_total_mileage_truck_1, get_total_mileage_truck_2, get_total_mileage_truck_3, get_total_transit_time_truck_2, get_total_transit_time_truck_1, get_total_transit_time_truck_3, get_total_transit_time, get_total_mileage
 from package_statuses import get_package_statuses, get_package_status
-
-# ADD FUNCTIONALITY TO 'RETURN' TO MAIN MENU
-
-# 1: Print total transit time
-# 2: Print total mileage
-# 3: Print total transit time for an individual truck
-# 4: Print total mileage for an individual truck
-# 5: Print all package statuses based on a given time
-# 6: Print individual package status based on a given time
-# 0: Exit Application
 
 # Code for user interface
 def main():
@@ -68,25 +55,25 @@ Please make a selection below by typing in the menu option on your keyboard.
 """
 
         print(main_menu)
-        user_selection = int(input('Select a menu option:'))
+        user_selection = int(input('Select a menu option:\n'))
 
         # While loop to handle menu selection. Runs until user selects '0' to exit program
         # O(N)
         while user_selection != 0:
             if user_selection == 9:
                 print(main_menu)
-                user_selection = int(input('Select a menu option:'))
+                user_selection = int(input('Please make another selection or type 0 to exit the program:\n'))
             elif user_selection == 1:
                 print('\nThe total transit time for all trucks was ' + get_total_transit_time()[0] + ' Hours and ' + get_total_transit_time()[1] + ' Minutes\n')
                 user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
-                                           'main menu type 9.'))
+                                           'main menu type 9:\n'))
             elif user_selection == 2:
                 print('\nThe total mileage for all trucks was ' + get_total_mileage() + ' miles.\n')
                 user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
-                                           'main menu type 9.'))
+                                           'main menu type 9:\n'))
             elif user_selection == 3:
                 truck_selection = int(input('\nTo see the total transit time for a specific truck please type 1 for Truck '
-                                            '1, 2 for Truck 2, or 3 for Truck 3.\nType 9 to return to the main menu.'))
+                                            '1, 2 for Truck 2, or 3 for Truck 3.\nType 9 to return to the main menu:\n'))
                 if truck_selection == 1:
                     print('\nThe total transit time for truck ' + str(truck_selection) + ' was ' + get_total_transit_time_truck_1()[0] + ' hours and ' + get_total_transit_time_truck_1()[1] + ' minutes.')
                 elif truck_selection == 2:
@@ -95,10 +82,10 @@ Please make a selection below by typing in the menu option on your keyboard.
                     print('\nThe total transit time for truck ' + str(truck_selection) + ' was ' + get_total_transit_time_truck_3()[0] + ' hours and ' + get_total_transit_time_truck_3()[1] + ' minutes.')
                 elif truck_selection == 9:
                     print(main_menu)
-                    user_selection = int(input('Please make another selection or type 0 to exit the program.'))
+                    user_selection = int(input('Please make another selection or type 0 to exit the program:\n'))
             elif user_selection == 4:
                 truck_selection = int(input('\nTo see the total mileage for a specific truck please type 1 for Truck '
-                                            '1, 2 for Truck 2, or 3 for Truck 3.\nType 9 to return to the main menu.'))
+                                            '1, 2 for Truck 2, or 3 for Truck 3.\nType 9 to return to the main menu:\n'))
                 if truck_selection == 1:
                     print('\nThe total mileage driven for truck ' + str(truck_selection) + ' was ' + get_total_mileage_truck_1() + ' miles.')
                 elif truck_selection == 2:
@@ -107,7 +94,18 @@ Please make a selection below by typing in the menu option on your keyboard.
                     print('\nThe total mileage driven for truck ' + str(truck_selection) + ' was ' + get_total_mileage_truck_3() + ' miles.')
                 elif truck_selection == 9:
                     print(main_menu)
-                    user_selection = int(input('Please make another selection or type 0 to exit the program.'))
+                    user_selection = int(input('Please make another selection or type 0 to exit the program:\n'))
+            elif user_selection == 5:
+                time_param = input('\nPlease enter a time in 24-hour format (e.g. 14:00 for 2:00 pm):\n')
+                print(get_package_statuses(time_param))
+                user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
+                                           'main menu type 9:\n'))
+            elif user_selection == 6:
+                time_param = input('\nPlease enter a time in 24-hour format (e.g. 14:00 for 2:00 pm):\n')
+                package_selection = int(input('\nPlease type a package ID (e.g. 1 or 39):\n'))
+                print(get_package_status(package_selection, time_param))
+                user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
+                                           'main menu type 9:\n'))
 
     # Display message on program termination
     finally:

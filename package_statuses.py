@@ -155,11 +155,13 @@ def get_package_statuses(time_param):
     # total_transit_time += int(dest_transit_time)
     # total_mileage += float(dest_distance)
 
+    print('\n')
+
     for el in range(1, 41):
         pkg = packages.read(el)
         print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Time: ' + pkg[10])
 
-    return
+    return ''
 
 
 # Returns the status of a package based on the package_id and time parameters
@@ -309,7 +311,7 @@ def get_package_status(package_id, time_param):
     # total_mileage += float(dest_distance)
 
     pkg = packages.read(package_id)
-    print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[
+    print('\nDetails for package ' + pkg[0] + ' -- Package ID: ' + pkg[0] + ' Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[
         8] + ' || Current Location: ' + pkg[9] + ' || Delivery Time: ' + pkg[10])
 
-    return
+    return ''
