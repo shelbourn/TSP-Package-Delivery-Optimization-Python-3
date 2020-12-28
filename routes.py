@@ -145,7 +145,7 @@ def exec_truck_routes():
 
 
 # Prints the departure and arrival times to and from the hub for each truck
-# O(N)
+# O(1)
 def get_truck_departure_arrival_times():
     print('Truck 1 left the hub at: ' + str(exec_truck_routes()[8]))
     print('Truck 1 returned to the hub at: ' + str(exec_truck_routes()[9]))
@@ -157,7 +157,7 @@ def get_truck_departure_arrival_times():
 
 
 # Getter for total_transit_time
-# O(N)
+# O(1)
 def get_total_transit_time():
     time_sec = exec_truck_routes()[0] * 60
     time_convert = time.gmtime(time_sec)
@@ -167,7 +167,7 @@ def get_total_transit_time():
 
 
 # Getter for total_transit_time_truck_1
-# O(N)
+# O(1)
 def get_total_transit_time_truck_1():
     time_sec = exec_truck_routes()[1] * 60
     time_convert = time.gmtime(time_sec)
@@ -177,7 +177,7 @@ def get_total_transit_time_truck_1():
 
 
 # Getter for total_transit_time_truck_2
-# O(N)
+# O(1)
 def get_total_transit_time_truck_2():
     time_sec = exec_truck_routes()[2] * 60
     time_convert = time.gmtime(time_sec)
@@ -187,7 +187,7 @@ def get_total_transit_time_truck_2():
 
 
 # Getter for total_transit_time_truck_3
-# O(N)
+# O(1)
 def get_total_transit_time_truck_3():
     time_sec = exec_truck_routes()[3] * 60
     time_convert = time.gmtime(time_sec)
@@ -197,24 +197,24 @@ def get_total_transit_time_truck_3():
 
 
 # Getter for total_mileage
-# O(N)
+# O(1)
 def get_total_mileage():
     return str(round(exec_truck_routes()[4], 2))
 
 
 # Getter for total_mileage_truck_1
-# O(N)
+# O(1)
 def get_total_mileage_truck_1():
     return str(round(exec_truck_routes()[5], 2))
 
 
 # Getter for total_mileage_truck_2
-# O(N)
+# O(1)
 def get_total_mileage_truck_2():
     return str(round(exec_truck_routes()[6], 2))
 
 
 # Getter for total_mileage_truck_3
-# O(N)
+# O(1)
 def get_total_mileage_truck_3():
     return str(round(exec_truck_routes()[7], 2))
