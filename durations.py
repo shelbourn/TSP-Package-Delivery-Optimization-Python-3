@@ -9,7 +9,6 @@ def calc_dest_transit_time(distance):
     truck_speed = 18
     transit_hours = float(distance) / truck_speed
     transit_minutes = float(transit_hours * 60)
-    print(transit_minutes)
     return transit_minutes
 
 
@@ -17,5 +16,4 @@ def calc_dest_transit_time(distance):
 # transit_minutes parameters
 def calc_delivery_time(current_time, transit_minutes):
     delivery_time = current_time + timedelta(minutes=transit_minutes)
-    print(delivery_time)
     return delivery_time

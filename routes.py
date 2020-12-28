@@ -9,11 +9,10 @@ from truckloads import get_truck_1, get_truck_2, get_truck_3
 from distances import calc_distance, get_dest_name
 from package_table import get_package_table
 
-packages = get_package_table()
-
 
 # Executing delivery route for Truck 1
 def exec_truck_routes():
+    packages = get_package_table()
     truck_1 = get_truck_1()
     truck_2 = get_truck_2()
     truck_3 = get_truck_3()
@@ -40,10 +39,9 @@ def exec_truck_routes():
     total_transit_time = 0
     truck_1_hub_arrival_time = ''  # Needed for dispatching truck 3. Driver must return to hub before truck 3 can depart
 
-    print('Truck 1 left hub at: ' + str(current_time_truck_1))
-
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
+    truck_1_departure_time = current_time_truck_1
     for pkg in truck_1:
         pkg[8] = str(current_time_truck_1)
         pkg[9] = 'Western Governors University'
@@ -54,7 +52,6 @@ def exec_truck_routes():
     # Delivers the packages, updates package status and delivery time
     # O(N)
     for pkg in truck_1:
-        print(pkg)
         dest_distance = calc_distance(current_location_truck_1, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
         delivery_time = str(calc_delivery_time(current_time_truck_1, dest_transit_time))
@@ -69,7 +66,6 @@ def exec_truck_routes():
         total_transit_time_truck_1 += int(dest_transit_time)
         total_mileage += float(dest_distance)
         total_mileage_truck_1 += float(dest_distance)
-        print(pkg)
 
     # Returns truck 1 to the hub
     dest_distance = calc_distance(current_location_truck_1, final_destination)
@@ -80,16 +76,10 @@ def exec_truck_routes():
     total_mileage += float(dest_distance)
     total_mileage_truck_1 += float(dest_distance)
     truck_1_hub_arrival_time = calc_delivery_time(current_time_truck_1, dest_transit_time)
-    print('Truck 1 returned to hub at: ' + str(truck_1_hub_arrival_time))
-
-    # Prints total transit time and total mileage
-    print('Total Transit Time: ' + str(total_transit_time))
-    print('Total Mileage: ' + str(total_mileage))
-
-    print('Truck 2 left hub at: ' + str(current_time_truck_2))
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
+    truck_2_departure_time = current_time_truck_2
     for pkg in truck_2:
         pkg[8] = str(current_time_truck_2)
         pkg[9] = 'Western Governors University'
@@ -100,7 +90,6 @@ def exec_truck_routes():
     # Delivers the packages, updates package status and delivery time
     # O(N)
     for pkg in truck_2:
-        print(pkg)
         dest_distance = calc_distance(current_location_truck_2, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
         delivery_time = str(calc_delivery_time(current_time_truck_2, dest_transit_time))
@@ -115,27 +104,13 @@ def exec_truck_routes():
         total_transit_time_truck_2 += int(dest_transit_time)
         total_mileage += float(dest_distance)
         total_mileage_truck_2 += float(dest_distance)
-        print(pkg)
-
-    # DON'T KNOW IF I NEED TO RETURN TRUCK 2 TO THE HUB
-    # Returns truck 2 to the hub
-    # dest_distance = calc_distance(current_location_truck_2, final_destination)
-    # dest_transit_time = calc_dest_transit_time(dest_distance)
-    # current_location_name_truck_2 = get_dest_name(final_destination)
-    # total_transit_time += int(dest_transit_time)
-    # total_mileage += float(dest_distance)
-
-    # Prints total transit time and total mileage
-    print('Total Transit Time: ' + str(total_transit_time))
-    print('Total Mileage: ' + str(total_mileage))
 
     # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
     current_time_truck_3 = current_time_truck_3 if current_time_truck_3 >= truck_1_hub_arrival_time else truck_1_hub_arrival_time
 
-    print('Truck 3 left hub at: ' + str(current_time_truck_3))
-
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
+    truck_3_departure_time = current_time_truck_3
     for pkg in truck_3:
         pkg[8] = str(current_time_truck_3)
         pkg[9] = 'Western Governors University'
@@ -147,7 +122,6 @@ def exec_truck_routes():
     # O(N)
 
     for pkg in truck_3:
-        print(pkg)
         dest_distance = calc_distance(current_location_truck_3, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
         delivery_time = str(calc_delivery_time(current_time_truck_3, dest_transit_time))
@@ -162,22 +136,22 @@ def exec_truck_routes():
         total_transit_time_truck_3 += int(dest_transit_time)
         total_mileage += float(dest_distance)
         total_mileage_truck_3 += float(dest_distance)
-        print(pkg)
-
-    # DON'T KNOW IF I NEED TO RETURN TRUCK 3 TO THE HUB
-    # Returns truck 3 to the hub
-    # dest_distance = calc_distance(current_location_truck_3, final_destination)
-    # dest_transit_time = calc_dest_transit_time(dest_distance)
-    # current_location_name_truck_3 = get_dest_name(final_destination)
-    # total_transit_time += int(dest_transit_time)
-    # total_mileage += float(dest_distance)
-
-    # Prints total transit time and total mileage
-    print('Total Transit Time: ' + str(total_transit_time))
-    print('Total Mileage: ' + str(total_mileage))
 
     # Returns total_transit_time and total_mileage
-    return total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, total_transit_time_truck_3, total_mileage, total_mileage_truck_1, total_mileage_truck_2, total_mileage_truck_3
+    return [total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, total_transit_time_truck_3,
+            total_mileage, total_mileage_truck_1, total_mileage_truck_2, total_mileage_truck_3, truck_1_departure_time,
+            truck_1_hub_arrival_time, truck_2_departure_time, truck_3_departure_time]
+
+# Prints the departure and arrival times to and from the hub for each truck
+# O(N)
+def get_truck_departure_arrival_times():
+    print('Truck 1 left the hub at: ' + str(exec_truck_routes()[8]))
+    print('Truck 1 returned to the hub at: ' + str(exec_truck_routes()[9]))
+    print('Truck 2 left the hub at: ' + str(exec_truck_routes()[10]))
+    print('Truck 2 was dispatched to another hub after completing route.')
+    print('Truck 3 left the hub at: ' + str(exec_truck_routes()[11]))
+    print('Truck 3 was dispatched to another hub after completing route.')
+    return
 
 
 # Getter for total_transit_time

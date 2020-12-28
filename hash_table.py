@@ -49,7 +49,6 @@ class HashTable:
 
         if not found:
             self.table[hashed_key].append((key, val))
-            print('The package with ID ' + str(key) + ' has been successfully entered into the table.')
             return
 
     # Function for retrieving entries from the table
@@ -62,7 +61,6 @@ class HashTable:
             if el[0] == key:
                 found = True
                 entry = el
-                # print('The table entry associated with package ID ' + str(key) + ' is: ' + str(entry))
                 return el[1]
 
         if not found:
@@ -80,7 +78,6 @@ class HashTable:
             if len(el) == 2 and el[0] == key:
                 self.table[hashed_key][i] = (key, val)
                 found = True
-                print('Package with ID ' + str(key) + ' has been successfully updated in the table.')
                 break
 
         if not found:
@@ -99,7 +96,6 @@ class HashTable:
             if len(el) == 2 and el[0] == key:
                 found = True
                 del self.table[hashed_key][i]
-                print('The package with ID ' + str(key) + ' has been successfully removed from the table.')
                 break
 
         if not found:
