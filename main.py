@@ -8,6 +8,7 @@ from package_statuses import get_package_statuses, get_package_status
 
 
 # Code for user interface
+# O(N)
 def main():
     try:
         print('')

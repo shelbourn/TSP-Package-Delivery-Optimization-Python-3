@@ -4,8 +4,11 @@
 from package_table import get_package_table
 from distances import calc_distance
 
+
+# Initially loads all trucks with packages based on truck capacity and package criteria
 # 3 truck loads will be required since there are 40 packages, 2 trucks, and each
 # truck has a maximum capacity of 16 packages
+# O(N)
 def get_truck_loads():
     packages = get_package_table()
     truck_1 = []  # first truck load to leave hub on truck #1
@@ -92,7 +95,9 @@ def get_truck_loads():
 # !!! MAKE SURE TO PRIORITIZE ALL PACKAGES WITH DEADLINES ON TRUCKS
 # !!! ADJUST PACKAGE ADD FUNCTIONS TO NOT DELETE THE PACKAGE AFTER IT IS ADDED
 
-# Getter for truck_1
+# Getter for the packages on truck 1
+# Optimizes the packages on truck 1 based on a nearest neighbor greedy algorithm
+# O(N^2)
 def get_truck_1():
     truck_1 = get_truck_loads()[0]
     truck_1_optimized = []
@@ -124,7 +129,9 @@ def get_truck_1():
     return truck_1_optimized
 
 
-# Getter for truck_2
+# Getter for the packages on truck 2
+# Optimizes the packages on truck 2 based on a nearest neighbor greedy algorithm
+# O(N^2)
 def get_truck_2():
     truck_2 = get_truck_loads()[1]
     truck_2_pre_sort = []
@@ -157,7 +164,9 @@ def get_truck_2():
     return truck_2_optimized
 
 
-# Getter for truck_3
+# Getter for the packages on truck 3
+# Optimizes the packages on truck 3 based on a nearest neighbor greedy algorithm
+# O(N^2)
 def get_truck_3():
     truck_3 = get_truck_loads()[2]
     truck_3_optimized = []

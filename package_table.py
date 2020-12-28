@@ -7,6 +7,7 @@ from hash_table import HashTable
 from distances import get_addresses
 
 # Getter for package_table
+# O(N^2)
 def get_package_table():
     # Ingest package data from 'WGUPS Package File.csv'
     with open('./data/wgups-package-data.csv') as csvfile:

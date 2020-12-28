@@ -9,6 +9,9 @@ from distances import calc_distance, get_dest_name
 from package_table import get_package_table
 
 
+# Executes truck routes and returns formatted print statements displaying the status of each package based
+# on a time parameter
+# O(N)
 def get_package_statuses(time_param):
     packages = get_package_table()
     truck_1 = get_truck_1()
@@ -101,14 +104,6 @@ def get_package_statuses(time_param):
             pkg[11] = 'Delivered'
             packages.update(int(pkg[0]), pkg)
 
-    # DON'T KNOW IF I NEED TO RETURN TRUCK 2 TO THE HUB
-    # Returns truck 2 to the hub
-    # dest_distance = calc_distance(current_location_truck_2, final_destination)
-    # dest_transit_time = calc_dest_transit_time(dest_distance)
-    # current_location_name_truck_2 = get_dest_name(final_destination)
-    # total_transit_time += int(dest_transit_time)
-    # total_mileage += float(dest_distance)
-
     # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
     current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time else truck_1_hub_arrival_time
 
@@ -144,14 +139,6 @@ def get_package_statuses(time_param):
             pkg[11] = 'Delivered'
             packages.update(int(pkg[0]), pkg)
 
-    # DON'T KNOW IF I NEED TO RETURN TRUCK 3 TO THE HUB
-    # Returns truck 3 to the hub
-    # dest_distance = calc_distance(current_location_truck_3, final_destination)
-    # dest_transit_time = calc_dest_transit_time(dest_distance)
-    # current_location_name_truck_3 = get_dest_name(final_destination)
-    # total_transit_time += int(dest_transit_time)
-    # total_mileage += float(dest_distance)
-
     for el in range(1, 41):
         pkg = packages.read(el)
         print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] + ' || Delivery Time: ' + pkg[10])
@@ -159,7 +146,8 @@ def get_package_statuses(time_param):
     return ''
 
 
-# Returns the status of a package based on the package_id and time parameters
+# Returns the status of a specified package based on a package_id and time parameter
+# O(N)
 def get_package_status(package_id, time_param):
     packages = get_package_table()
     truck_1 = get_truck_1()
