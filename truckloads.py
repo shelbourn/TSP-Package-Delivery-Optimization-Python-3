@@ -93,12 +93,6 @@ for el in range(1, 41):
             packages.update(el, pkg)
 
 
-# Helper method to prioritize trucks based on package zip codes
-# O(1)
-def package_sort(pkg):
-    return pkg[4]
-
-
 # !!! MAKE SURE TO PRIORITIZE ALL PACKAGES WITH DEADLINES ON TRUCKS
 # !!! ADJUST PACKAGE ADD FUNCTIONS TO NOT DELETE THE PACKAGE AFTER IT IS ADDED
 
@@ -107,35 +101,85 @@ def get_truck_1():
     truck_1_optimized = []
     previous_package = ''
     shortest_distance = 15
+    truck_1_optimized_current_index = 0
     for pkg in truck_1:
         if '9' in pkg[5]:
             truck_1_optimized.append(pkg)
             truck_1.remove(pkg)
-            previous_package = truck_1[0]
-            truck_1_optimized.append(truck_1[0])
-            truck_1.remove(truck_1[0])
+            previous_package = pkg
+            truck_1_optimized_current_index += 1
 
-    # while len(truck_1) != 0:
-    #     for pkg in truck_1:
-    #         if float(calc_distance(previous_package, pkg)) < shortest_distance:
-    #             truck_1_optimized.append(pkg)
+    while len(truck_1) != 0:
+        for pkg in truck_1:
+            if float(calc_distance(previous_package, pkg)) < shortest_distance:
+                try:
+                    truck_1_optimized.remove(truck_1_optimized[truck_1_optimized_current_index])
+                except IndexError:
+                    pass
+                truck_1_optimized.insert(truck_1_optimized_current_index, pkg)
+                shortest_distance = float(calc_distance(previous_package, pkg))
 
-    truck_1.sort(key=package_sort)
-    print(truck_1_optimized)
+        previous_package = truck_1_optimized[truck_1_optimized_current_index]
+        truck_1.remove(previous_package)
+        truck_1_optimized_current_index += 1
+        shortest_distance = 15
+
     return truck_1_optimized
 
 
 # Getter for truck_2
 def get_truck_2():
-    truck_2.sort(key=package_sort)
-    print(truck_2)
-    return truck_2
+    truck_2_pre_sort = []
+    for pkg in truck_2:
+        if 'EOD' not in pkg[5]:
+            truck_2_pre_sort.insert(0, pkg)
+        else:
+            truck_2_pre_sort.append(pkg)
+
+    truck_2_optimized = []
+    previous_package = truck_2_pre_sort[0]
+    shortest_distance = 15
+    truck_2_optimized_current_index = 0
+
+    while len(truck_2_pre_sort) != 0:
+        for pkg in truck_2_pre_sort:
+            if float(calc_distance(previous_package, pkg)) < shortest_distance:
+                try:
+                    truck_2_optimized.remove(truck_2_optimized[truck_2_optimized_current_index])
+                except IndexError:
+                    pass
+                truck_2_optimized.insert(truck_2_optimized_current_index, pkg)
+                shortest_distance = float(calc_distance(previous_package, pkg))
+
+        previous_package = truck_2_optimized[truck_2_optimized_current_index]
+        truck_2_pre_sort.remove(previous_package)
+        truck_2_optimized_current_index += 1
+        shortest_distance = 15
+
+    return truck_2_optimized
 
 
 # Getter for truck_3
 def get_truck_3():
-    truck_3.sort(key=package_sort)
-    print(truck_3)
-    return truck_3
+    truck_3_optimized = []
+    previous_package = 0
+    shortest_distance = 15
+    truck_3_optimized_current_index = 0
 
+    while len(truck_3) != 0:
+        for pkg in truck_3:
+            if float(calc_distance(previous_package, pkg)) < shortest_distance:
+                try:
+                    truck_3_optimized.remove(truck_3_optimized[truck_3_optimized_current_index])
+                except IndexError:
+                    pass
+                truck_3_optimized.insert(truck_3_optimized_current_index, pkg)
+                shortest_distance = float(calc_distance(previous_package, pkg))
+
+        previous_package = truck_3_optimized[truck_3_optimized_current_index]
+        truck_3.remove(previous_package)
+        truck_3_optimized_current_index += 1
+        shortest_distance = 15
+
+    return truck_3_optimized
 

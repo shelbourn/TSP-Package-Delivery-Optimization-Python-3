@@ -177,8 +177,7 @@ def exec_truck_routes():
     print('Total Mileage: ' + str(total_mileage))
 
     # Returns total_transit_time and total_mileage
-    return [total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, total_transit_time_truck_3,
-            total_mileage, total_mileage_truck_1, total_mileage_truck_2, total_mileage_truck_3]
+    return total_transit_time, total_transit_time_truck_1, total_transit_time_truck_2, total_transit_time_truck_3, total_mileage, total_mileage_truck_1, total_mileage_truck_2, total_mileage_truck_3
 
 
 # Getter for total_transit_time

@@ -159,7 +159,7 @@ def get_package_statuses(time_param):
 
     for el in range(1, 41):
         pkg = packages.read(el)
-        print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Time: ' + pkg[10])
+        print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] + ' || Delivery Time: ' + pkg[10])
 
     return ''
 
@@ -312,6 +312,6 @@ def get_package_status(package_id, time_param):
 
     pkg = packages.read(package_id)
     print('\nDetails for package ' + pkg[0] + ' -- Package ID: ' + pkg[0] + ' Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[
-        8] + ' || Current Location: ' + pkg[9] + ' || Delivery Time: ' + pkg[10])
+        8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] + ' || Delivery Time: ' + pkg[10])
 
     return ''
