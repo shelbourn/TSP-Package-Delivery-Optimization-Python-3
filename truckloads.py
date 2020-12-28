@@ -6,6 +6,7 @@ from distances import calc_distance
 
 
 # Initially loads all trucks with packages based on truck capacity and package criteria
+# These truck loads will be optimized by other functions
 # 3 truck loads will be required since there are 40 packages, 2 trucks, and each
 # truck has a maximum capacity of 16 packages
 # O(N)
@@ -14,7 +15,6 @@ def get_truck_loads():
     truck_1 = []  # first truck load to leave hub on truck #1
     truck_2 = []  # second truck load to leave hub on truck #2
     truck_3 = []  # third truck load to leave hub on either truck #1 or #2 (whichever returns first)
-
     linked_packages = ['13', '15', '19']
     truck_1_zips = []
     truck_2_zips = []
@@ -76,7 +76,8 @@ def get_truck_loads():
                 truck_1_count += 1
                 pkg[12] = True
                 packages.update(el, pkg)
-            elif pkg is not None and truck_1_count == truck_capacity and truck_2_count < truck_capacity and pkg[4] in truck_2_zips:
+            elif pkg is not None and truck_1_count == truck_capacity and truck_2_count < truck_capacity and pkg[4] \
+                    in truck_2_zips:
                 truck_2.append(pkg)
                 truck_2_count += 1
                 pkg[12] = True
@@ -92,8 +93,6 @@ def get_truck_loads():
                 packages.update(el, pkg)
     return truck_1, truck_2, truck_3
 
-# !!! MAKE SURE TO PRIORITIZE ALL PACKAGES WITH DEADLINES ON TRUCKS
-# !!! ADJUST PACKAGE ADD FUNCTIONS TO NOT DELETE THE PACKAGE AFTER IT IS ADDED
 
 # Getter for the packages on truck 1
 # Optimizes the packages on truck 1 based on a nearest neighbor greedy algorithm

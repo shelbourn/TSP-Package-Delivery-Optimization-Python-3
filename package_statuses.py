@@ -105,7 +105,8 @@ def get_package_statuses(time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
-    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time else truck_1_hub_arrival_time
+    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time \
+        else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -141,7 +142,8 @@ def get_package_statuses(time_param):
 
     for el in range(1, 41):
         pkg = packages.read(el)
-        print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] + ' || Delivery Time: ' + pkg[10])
+        print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] +
+              ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] + ' || Delivery Time: ' + pkg[10])
 
     return ''
 
@@ -242,7 +244,8 @@ def get_package_status(package_id, time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
-    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time else truck_1_hub_arrival_time
+    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 > truck_1_hub_arrival_time \
+        else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
@@ -277,7 +280,8 @@ def get_package_status(package_id, time_param):
             packages.update(int(pkg[0]), pkg)
 
     pkg = packages.read(package_id)
-    print('\nDetails for package ' + pkg[0] + ' as of ' + initial_time_param + ' --  Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[
-        8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] + ' || Delivery Time: ' + pkg[10])
+    print('\nDetails for package ' + pkg[0] + ' as of ' + initial_time_param + ' --  Status: ' + pkg[11] +
+          ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] +
+          ' || Delivery Time: ' + pkg[10])
 
     return ''

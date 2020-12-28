@@ -39,8 +39,8 @@ def get_package_table():
                              current_location, delivery_time, status, assigned]
 
             # Adds each key/value pair to the package hash table
-            # O(N) -- Since some rows in the table may contain nested lists that need to be iterated through, the space-time
-            # complexity for this operation is O(N), otherwise it would be O(1)
+            # O(N) -- Since some rows in the table may contain nested lists that need to be iterated through,
+            # the space-time complexity for this operation is O(N), otherwise it would be O(1)
             package_table.create(package_key, package_value)
 
         # Iterates over packages and assigns a package address index based on the

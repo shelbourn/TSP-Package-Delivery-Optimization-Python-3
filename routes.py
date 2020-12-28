@@ -107,7 +107,8 @@ def exec_truck_routes():
         total_mileage_truck_2 += float(dest_distance)
 
     # Sets initial departure time of truck 3 based on the time that truck 1 returns to the hub
-    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 >= truck_1_hub_arrival_time else truck_1_hub_arrival_time
+    current_time_truck_3 = current_time_truck_3 if current_time_truck_3 >= truck_1_hub_arrival_time \
+        else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
     # O(N)
