@@ -122,7 +122,10 @@ Please make a selection below by typing in the menu option on your keyboard.
                                    'am):\n')
                 if len(time_param) < 4:
                     time_param += ':00'
-                package_selection = int(input('\nPlease type a package ID (e.g. 1 or 39):\n'))
+                package_selection = int(input('\nPlease type a package ID from 1-40 (e.g. 1 or 39):\n'))
+                if package_selection > 40:
+                    package_selection = int(input('\nInvalid Selection!\n'
+                                                  'Please type a package ID from 1-40 (e.g. 1 or 39):\n'))
                 print(get_package_status(package_selection, time_param))
                 user_selection = int(input('Please make another selection or type 0 to exit the program.\nTo view the '
                                            'main menu type 9:\n'))
