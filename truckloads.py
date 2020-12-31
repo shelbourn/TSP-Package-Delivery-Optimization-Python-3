@@ -9,7 +9,7 @@ from distances import calc_distance
 # These truck loads will be optimized by other functions
 # 3 truck loads will be required since there are 40 packages, 2 trucks, and each
 # truck has a maximum capacity of 16 packages
-# O(N)
+# Space-time complexity O(N)
 def get_truck_loads():
     packages = get_package_table()
     truck_1 = []  # first truck load to leave hub on truck #1
@@ -24,7 +24,7 @@ def get_truck_loads():
 
     # First pass:
     # assigns packages to truck loads that must be included in specific truck loads
-    # O(N)
+    # Space-time complexity O(N)
     for el in range(1, 41):
         pkg = packages.read(el)
         if 'Delayed' in pkg[7] or 'Can' in pkg[7]:  # assigning packages to truck_2
@@ -48,7 +48,7 @@ def get_truck_loads():
 
     # Second pass:
     # assigns packages to truck_1 that must be delivered together
-    # O(N)
+    # Space-time complexity O(N)
     for el in range(1, 41):
         pkg = packages.read(el)
         if pkg is not None and pkg[0] in linked_packages and pkg not in truck_1:
@@ -62,7 +62,7 @@ def get_truck_loads():
     # assigns packages to truck_1 while it has remaining space (based on zip code)
     # assigns packages to truck_2 while it has remaining space (based on zip code)
     # assigns all remaining packages that won't fit on truck_2 to truck_3
-    # O(N)
+    # Space-time complexity O(N)
     for el in range(1, 41):
         pkg = packages.read(el)
         if pkg[12] == False:
@@ -95,8 +95,8 @@ def get_truck_loads():
 
 
 # Getter for the packages on truck 1
-# Optimizes the packages on truck 1 based on a nearest neighbor greedy algorithm
-# O(N^2)
+# Optimizes the packages on truck 1 based on a variations of the K-Nearest Neighbor ("Greedy") algorithm
+# Space complexity O(N), Time complexity O(N^2)
 def get_truck_1():
     truck_1 = get_truck_loads()[0]
     truck_1_optimized = []
@@ -129,8 +129,8 @@ def get_truck_1():
 
 
 # Getter for the packages on truck 2
-# Optimizes the packages on truck 2 based on a nearest neighbor greedy algorithm
-# O(N^2)
+# Optimizes the packages on truck 2 based on a variations of the K-Nearest Neighbor ("Greedy") algorithm
+# Space complexity O(N), Time complexity O(N^2)
 def get_truck_2():
     truck_2 = get_truck_loads()[1]
     truck_2_pre_sort = []
@@ -164,8 +164,8 @@ def get_truck_2():
 
 
 # Getter for the packages on truck 3
-# Optimizes the packages on truck 3 based on a nearest neighbor greedy algorithm
-# O(N^2)
+# Optimizes the packages on truck 3 based on a variations of the K-Nearest Neighbor ("Greedy") algorithm
+# Space complexity O(N), Time complexity O(N^2)
 def get_truck_3():
     truck_3 = get_truck_loads()[2]
     truck_3_optimized = []

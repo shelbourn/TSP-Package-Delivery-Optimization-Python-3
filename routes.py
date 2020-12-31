@@ -11,7 +11,7 @@ from package_table import get_package_table
 
 
 # Executes the delivery routes for all trucks
-# O(N)
+# Space-time complexity O(N)
 def exec_truck_routes():
     packages = get_package_table()
     truck_1 = get_truck_1()
@@ -41,7 +41,7 @@ def exec_truck_routes():
     truck_1_hub_arrival_time = ''  # Needed for dispatching truck 3. Driver must return to hub before truck 3 can depart
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     truck_1_departure_time = current_time_truck_1
     for pkg in truck_1:
         pkg[8] = str(current_time_truck_1)
@@ -51,7 +51,7 @@ def exec_truck_routes():
         packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_1:
         dest_distance = calc_distance(current_location_truck_1, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -79,7 +79,7 @@ def exec_truck_routes():
     truck_1_hub_arrival_time = calc_delivery_time(current_time_truck_1, dest_transit_time)
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     truck_2_departure_time = current_time_truck_2
     for pkg in truck_2:
         pkg[8] = str(current_time_truck_2)
@@ -89,7 +89,7 @@ def exec_truck_routes():
         packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_2:
         dest_distance = calc_distance(current_location_truck_2, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -111,7 +111,7 @@ def exec_truck_routes():
         else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     truck_3_departure_time = current_time_truck_3
     for pkg in truck_3:
         pkg[8] = str(current_time_truck_3)
@@ -121,7 +121,7 @@ def exec_truck_routes():
         packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_3:
         dest_distance = calc_distance(current_location_truck_3, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -145,7 +145,7 @@ def exec_truck_routes():
 
 
 # Prints the departure and arrival times to and from the hub for each truck
-# O(1)
+# Space-time complexity O(1)
 def get_truck_departure_arrival_times():
     print('Truck 1 left the hub at: ' + str(exec_truck_routes()[8]))
     print('Truck 1 returned to the hub at: ' + str(exec_truck_routes()[9]))
@@ -157,7 +157,7 @@ def get_truck_departure_arrival_times():
 
 
 # Getter for total_transit_time
-# O(1)
+# Space-time complexity O(1)
 def get_total_transit_time():
     time_sec = exec_truck_routes()[0] * 60
     time_convert = time.gmtime(time_sec)
@@ -167,7 +167,7 @@ def get_total_transit_time():
 
 
 # Getter for total_transit_time_truck_1
-# O(1)
+# Space-time complexity O(1)
 def get_total_transit_time_truck_1():
     time_sec = exec_truck_routes()[1] * 60
     time_convert = time.gmtime(time_sec)
@@ -177,7 +177,7 @@ def get_total_transit_time_truck_1():
 
 
 # Getter for total_transit_time_truck_2
-# O(1)
+# Space-time complexity O(1)
 def get_total_transit_time_truck_2():
     time_sec = exec_truck_routes()[2] * 60
     time_convert = time.gmtime(time_sec)
@@ -187,7 +187,7 @@ def get_total_transit_time_truck_2():
 
 
 # Getter for total_transit_time_truck_3
-# O(1)
+# Space-time complexity O(1)
 def get_total_transit_time_truck_3():
     time_sec = exec_truck_routes()[3] * 60
     time_convert = time.gmtime(time_sec)
@@ -197,24 +197,24 @@ def get_total_transit_time_truck_3():
 
 
 # Getter for total_mileage
-# O(1)
+# Space-time complexity O(1)
 def get_total_mileage():
     return str(round(exec_truck_routes()[4], 2))
 
 
 # Getter for total_mileage_truck_1
-# O(1)
+# Space-time complexity O(1)
 def get_total_mileage_truck_1():
     return str(round(exec_truck_routes()[5], 2))
 
 
 # Getter for total_mileage_truck_2
-# O(1)
+# Space-time complexity O(1)
 def get_total_mileage_truck_2():
     return str(round(exec_truck_routes()[6], 2))
 
 
 # Getter for total_mileage_truck_3
-# O(1)
+# Space-time complexity O(1)
 def get_total_mileage_truck_3():
     return str(round(exec_truck_routes()[7], 2))

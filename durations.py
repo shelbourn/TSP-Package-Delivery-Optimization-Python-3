@@ -5,7 +5,7 @@ from datetime import timedelta
 
 
 # Calculates transit time in minutes based on the distance parameter
-# O(1)
+# Space-time complexity O(1)
 def calc_dest_transit_time(distance):
     truck_speed = 18
     transit_hours = float(distance) / truck_speed
@@ -15,7 +15,7 @@ def calc_dest_transit_time(distance):
 
 # Calculates the delivery time of a package based on the current_time and
 # transit_minutes parameters
-# O(1)
+# Space-time complexity O(1)
 def calc_delivery_time(current_time, transit_minutes):
     delivery_time = current_time + timedelta(minutes=transit_minutes)
     return delivery_time

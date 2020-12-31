@@ -6,8 +6,9 @@ import csv
 from hash_table import HashTable
 from distances import get_addresses
 
+
 # Getter for package_table
-# O(N^2)
+# Space-time complexity O(N^2)
 def get_package_table():
     # Ingest package data from 'WGUPS Package File.csv'
     with open('./data/wgups-package-data.csv') as csvfile:
@@ -18,7 +19,7 @@ def get_package_table():
 
         # Ingest package data from csv file and insert them into hash table as key/value pairs
         # Key == package ID / Value == array containing package details
-        # O(N)
+        # Space complexity O(N), Time complexity O(N^2)
         for row in package_csv:
             package_id = row[0]
             street = row[1]
@@ -39,14 +40,14 @@ def get_package_table():
                              current_location, delivery_time, status, assigned]
 
             # Adds each key/value pair to the package hash table
-            # O(N) -- Since some rows in the table may contain nested lists that need to be iterated through,
-            # the space-time complexity for this operation is O(N), otherwise it would be O(1)
+            # Space-time complexity O(N) -- Since some rows in the table may contain nested lists that need to be
+            # iterated through, the space-time complexity for this operation is O(N), otherwise it would be O(1)
             package_table.create(package_key, package_value)
 
         # Iterates over packages and assigns a package address index based on the
         # distance_addresses variable in distances.py
         # This index will help to simplify distance calculations necessary in the program
-        # O(N^2)
+        # Space complexity O(N), Time complexity O(N^2)
         for el in range(1, 41):
             pkg = package_table.read(el)
             address_index = ''

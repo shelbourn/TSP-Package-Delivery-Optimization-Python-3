@@ -6,11 +6,11 @@ from routes import get_total_mileage_truck_1, get_total_mileage_truck_2, get_tot
     get_total_transit_time, get_total_mileage, get_truck_departure_arrival_times
 from package_statuses import get_package_statuses, get_package_status
 
-# *** TOTAL APPLICATION SPACE AND TIME COMPLEXITY IS O(N^2) ***
+# *** TOTAL APPLICATION SPACE COMPLEXITY IS O(N) AND TIME COMPLEXITY IS O(N^2) ***
 
 
 # Code for user interface
-# O(N)
+# Space-time complexity O(N)
 def main():
     try:
         print('')
@@ -58,7 +58,7 @@ Please make a selection below by typing in the menu option on your keyboard.
         user_selection = int(input('Select a menu option:\n'))
 
         # While loop to handle menu selection. Runs until user selects '0' to exit program
-        # O(N)
+        # Space-time complexity O(N)
         while user_selection != 0:
             if user_selection == 9:
                 print(main_menu)

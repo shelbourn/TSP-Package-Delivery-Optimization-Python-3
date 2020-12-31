@@ -12,20 +12,20 @@ class HashTable:
 
     # Creates the empty hash table with empty arrays (buckets) in each row of table
     # The number of rows can be controlled by the MAX variable
-    # O(1)
+    # Space-time complexity O(N)
     def __init__(self):
         self.MAX = 10
         self.table = [[] for i in range(self.MAX)]
 
     # Defines the hashing function (private function that is only used by other functions within class)
-    # O(1)
+    # Space-time complexity O(1)
     def _get_hash(self, key):
         return int(key) % len(self.table)
 
     # <----- BEGIN CRUD FUNCTIONALITY ----->
 
     # Function for adding a key/value pair to the hash table
-    # O(N)
+    # Space-time complexity O(N)
     def create(self, key, val):
         hashed_key = self._get_hash(key)
         found = False
@@ -45,7 +45,7 @@ class HashTable:
             return
 
     # Function for retrieving entries from the table
-    # O(N)
+    # Space-time complexity O(N)
     def read(self, key):
         hashed_key = self._get_hash(key)
         found = False
@@ -62,7 +62,7 @@ class HashTable:
             return None
 
     # Function for updating hash table entries
-    # O(N)
+    # Space-time complexity O(N)
     def update(self, key, val):
         hashed_key = self._get_hash(key)
         found = False
@@ -80,7 +80,7 @@ class HashTable:
             return None
 
     # Function for deleting hash table entries
-    # O(N)
+    # Space-time complexity O(N)
     def delete(self, key):
         hashed_key = self._get_hash(key)
         found = False

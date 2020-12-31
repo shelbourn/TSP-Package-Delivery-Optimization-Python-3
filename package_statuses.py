@@ -11,7 +11,7 @@ from package_table import get_package_table
 
 # Executes truck routes and returns formatted print statements displaying the status of each package based
 # on a time parameter
-# O(N)
+# Space-time complexity O(N)
 def get_package_statuses(time_param):
     packages = get_package_table()
     truck_1 = get_truck_1()
@@ -35,7 +35,7 @@ def get_package_statuses(time_param):
     truck_1_hub_arrival_time = ''  # Needed for dispatching truck 3. Driver must return to hub before truck 3 can depart
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_1:
         if current_time_truck_1 > converted_time_param + timedelta(seconds=1):
             pkg[8] = 'N/A'
@@ -49,7 +49,7 @@ def get_package_statuses(time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_1:
         dest_distance = calc_distance(current_location_truck_1, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -73,7 +73,7 @@ def get_package_statuses(time_param):
     truck_1_hub_arrival_time = calc_delivery_time(current_time_truck_1, dest_transit_time)
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_2:
         if current_time_truck_2 > converted_time_param + timedelta(seconds=1):
             pkg[8] = 'N/A'
@@ -87,7 +87,7 @@ def get_package_statuses(time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_2:
         dest_distance = calc_distance(current_location_truck_2, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -109,7 +109,7 @@ def get_package_statuses(time_param):
         else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_3:
         if current_time_truck_3 > converted_time_param + timedelta(seconds=1):
             pkg[8] = 'N/A'
@@ -123,7 +123,7 @@ def get_package_statuses(time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_3:
         dest_distance = calc_distance(current_location_truck_3, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -141,7 +141,7 @@ def get_package_statuses(time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Prints the statuses for all packages at a specific time based on a provided time parameter
-    # O(N)
+    # Space-time complexity O(N)
     for el in range(1, 41):
         pkg = packages.read(el)
         print('Details for package: ' + pkg[0] + ' -- Status: ' + pkg[11] + ' || Left Hub At: ' + pkg[8] +
@@ -151,7 +151,7 @@ def get_package_statuses(time_param):
 
 
 # Returns the status of a specified package based on a package_id and time parameter
-# O(N)
+# Space-time complexity O(N)
 def get_package_status(package_id, time_param):
     packages = get_package_table()
     truck_1 = get_truck_1()
@@ -176,7 +176,7 @@ def get_package_status(package_id, time_param):
     truck_1_hub_arrival_time = ''  # Needed for dispatching truck 3. Driver must return to hub before truck 3 can depart
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_1:
         if current_time_truck_1 > converted_time_param + timedelta(seconds=1):
             pkg[8] = 'N/A'
@@ -190,7 +190,7 @@ def get_package_status(package_id, time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_1:
         dest_distance = calc_distance(current_location_truck_1, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -214,7 +214,7 @@ def get_package_status(package_id, time_param):
     truck_1_hub_arrival_time = calc_delivery_time(current_time_truck_1, dest_transit_time)
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_2:
         if current_time_truck_2 > converted_time_param + timedelta(seconds=1):
             pkg[8] = 'N/A'
@@ -228,7 +228,7 @@ def get_package_status(package_id, time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_2:
         dest_distance = calc_distance(current_location_truck_2, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -250,7 +250,7 @@ def get_package_status(package_id, time_param):
         else truck_1_hub_arrival_time
 
     # Sets the initial status of all packages to 'Out for Delivery'
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_3:
         if current_time_truck_3 > converted_time_param + timedelta(seconds=1):
             pkg[8] = 'N/A'
@@ -264,7 +264,7 @@ def get_package_status(package_id, time_param):
             packages.update(int(pkg[0]), pkg)
 
     # Delivers the packages, updates package status and delivery time
-    # O(N)
+    # Space-time complexity O(N)
     for pkg in truck_3:
         dest_distance = calc_distance(current_location_truck_3, pkg)
         dest_transit_time = calc_dest_transit_time(dest_distance)
@@ -283,7 +283,7 @@ def get_package_status(package_id, time_param):
 
     # Prints the statuses for an individual package at a specific time based on a provided package ID parameter and
     # a provided time parameter
-    # O(N)
+    # Space-time complexity O(N)
     pkg = packages.read(package_id)
     print('\nDetails for package ' + pkg[0] + ' as of ' + initial_time_param + ' --  Status: ' + pkg[11] +
           ' || Left Hub At: ' + pkg[8] + ' || Current Location: ' + pkg[9] + ' || Delivery Deadline: ' + pkg[5] +
