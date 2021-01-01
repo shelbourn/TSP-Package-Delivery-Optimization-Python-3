@@ -1,6 +1,6 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # package_table.py ingests the data from the 'WGUPS Package File' csv and
 # enters data for each package into package hash table
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 import csv
 from hash_table import HashTable

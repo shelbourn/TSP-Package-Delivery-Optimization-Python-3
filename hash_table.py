@@ -1,6 +1,5 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # hash_table.py contains the Class constructors and associated methods for the HashEntry and HashTable classes
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
-
 
 # Class constructor for the Hash Table to be used for all packages
 # The HashTable class includes the following:

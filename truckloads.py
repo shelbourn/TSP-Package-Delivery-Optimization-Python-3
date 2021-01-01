@@ -1,5 +1,5 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # truckloads.py assigns packages to truckloads based on certain package criteria
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 from package_table import get_package_table
 from distances import calc_distance

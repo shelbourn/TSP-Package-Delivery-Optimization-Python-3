@@ -1,5 +1,5 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # main.py contains the main logic for the progrom and the code for the console interface
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 from routes import get_total_mileage_truck_1, get_total_mileage_truck_2, get_total_mileage_truck_3,\
     get_total_transit_time_truck_2, get_total_transit_time_truck_1, get_total_transit_time_truck_3,\

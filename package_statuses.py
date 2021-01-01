@@ -1,6 +1,6 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # package_statuses.py includes a function to calculate and return the status for all packages
 # based on a given time parameter
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 from datetime import datetime, timedelta
 from durations import calc_dest_transit_time, calc_delivery_time

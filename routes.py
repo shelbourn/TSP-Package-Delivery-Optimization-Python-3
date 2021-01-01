@@ -1,6 +1,6 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # routes.py includes various functions for calculating & executing delivery routes
 # The logic in this file will actually execute the truck delivery routes and deliver packages
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 from datetime import datetime, timedelta
 import time

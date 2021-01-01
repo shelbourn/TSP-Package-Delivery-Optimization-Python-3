@@ -1,5 +1,5 @@
+# Author: Matthew Shelbourn | Student ID: 001059665 | mshelbo@wgu.edu | December, 2020
 # distance.py ingests data from "WGUPS Distance Table.csv", assigns them to objects for use in program
-# Author: Matthew Shelbourn | mshelbo@wgu.edu | December, 2020
 
 import csv
 
